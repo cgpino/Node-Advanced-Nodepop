@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h3>Servicio de API para la compra y venta de productos</h3>
+
+    <br>
+
+    <input type="button" value="Volver a Inicio" onclick="location.reload();location.href='/'"/>
+    <h3>Listado de anuncios:</h3>
+    <ul>
+      <% anuncios.forEach(anuncio => {  %>
+        <li>
+          <p><b>Artículo:</b> <%= anuncio.nombre %></p>
+          <p><b>Tipo: </b>
+            <% if (anuncio.venta) { %>
+              Se vende
+            <% } else { %>
+              Se busca
+            <% } %>
+          </p>
+          <p><b>Precio:</b> <%= anuncio.precio %> €</p>
+          <p><b>Etiquetas: </b>
+            <% anuncio.tags.forEach(tag => {  %>
+              <%= tag %>
+            <% }) %>
+          </p>
+          <img src="images/anuncios/<%= anuncio.foto %>" alt="Foto Articulo" width="250" height="200">
+        </li>
+        <br>
+      <% }) %>
+    </ul>
+
+  </body>
+</html>

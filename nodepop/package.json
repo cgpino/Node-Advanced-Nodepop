@@ -1,0 +1,24 @@
+{
+  "name": "nodepop",
+  "version": "0.1.0",
+  "description": "Servicio de API de prueba para comprar y vender objetos",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "cross-env DEBUG=nodeapi:* nodemon ./bin/www",
+    "install_db": "node ./lib/install_db.js"
+  },
+  "author": "Carlos Gómez Pino",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cross-env": "^5.1.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.15.5",
+    "express-validator": "^4.3.0",
+    "mongoose": "^5.0.3",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  }
+}
