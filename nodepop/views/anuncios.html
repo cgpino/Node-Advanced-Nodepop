@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<% include header.html %>
+
+<div class="container">
+  <br>
+  <h3 class="page-title">Listado de anuncios</h3>
+  <center>
+    <% anuncios.forEach(anuncio => {  %>
+      <div class="card mt-4">
+        <!--<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">-->
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-3">
+
+              <h3 class="card-title"><%= anuncio.nombre %></h3>
+
+              <h4><%= anuncio.precio %> €</h4>
+
+              <% if (anuncio.venta) { %>
+                <h4><span class="badge badge-success">Se vende</span></h4>
+              <% } else { %>
+                <h4><span class="badge badge-primary">Se busca</span></h4>
+              <% } %>
+
+              <p>
+                <% anuncio.tags.forEach(tag => {  %>
+                  <span class="badge badge-secondary"><%= tag %></span>
+                <% }) %>
+              </p>
+
+            </div>
+
+            <div class="col-lg-9">
+              <img src="images/anuncios/<%= anuncio.foto %>" class="rounded" alt="Foto Articulo" width="200" height="150">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </center>
+</div>
+
+<br>
+
+<% include footer.html %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<% include header.html %>
+
+<br>
+<div class="container">
+
+  <h3 class="page-title">Inicio de sesión</h3>
+
+  <form method="POST">
+    <div class="form-group">
+      <label for="user">Usuario:</label>
+      <input type="user" class="form-control" id="user" placeholder="Introduce usuario" name="user">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Contraseña:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Introduce contraseña" name="pswd">
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+  </form>
+</div>
+
+<br>
+
+<% include footer.html %>

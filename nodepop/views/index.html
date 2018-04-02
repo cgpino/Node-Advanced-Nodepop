@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<% include header.html %>
+
+<div class="container">
+
+  <br>
+  <h3 class="page-title">Inicio</h3>
+  <div class="card card-outline-secondary my-4">
+    <div class="card-header">
+      Tipos de listados
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><p><a href="/anuncios">Listado de anuncios en HTML</a></p></li>
+        <li><p><a href="/apiv1/anuncios">Listado de anuncios en JSON</a></p></li>
+        <li><p><a href="/apiv1/anuncios/tags">Listado de tags en JSON</a></p></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-outline-secondary my-4">
+    <div class="card-header">
+      Filtros
+    </div>
+    <div class="card-body">
+      <p>Desde ambos listados es posible aplicar filtros usando estos parámetros como query:</p>
+      <ul>
+        <li><p><b>nombre: </b>Busca por el nombre completo o inicial de un artículo</p></li>
+        <li><p><b>venta: </b>Busca por tipo (true -> se vende || false -> se busca)</p></li>
+        <li><p><b>precio: </b>Busca por precio ("x-" -> Mayor que x || "x-y" -> Entre x e y || "-y" -> Menor que y) </p></li>
+        <li><p><b>tags: </b>Busca por tags o etiquetas ("lifestyle", "motor", "mobile", "work") </p></li>
+      </ul>
+      <hr>
+      <p>También pueden usarse los parámetros <b>skip</b>, <b>limit</b> y <b>sort</b> para paginar y ordenar el listado.</p>
+      <p>Ejemplos:</p>
+      <ul>
+        <li><p><a href="/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work">http://localhost:3000/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work</a></p></li>
+        <li><p><a href="/anuncios?venta=true&precio=100-">http://localhost:3000/anuncios?venta=true&precio=100-</a></p></li>
+        <li><p><a href="/apiv1/anuncios?skip=1&limit=1">http://localhost:3000/apiv1/anuncios?skip=1&limit=1</a></p></li>
+        <li><p><a href="/anuncios?sort=precio">http://localhost:3000/anuncios?sort=precio</a></p></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-outline-secondary my-4">
+    <div class="card-header">
+      Añadir anuncios
+    </div>
+    <div class="card-body">
+      <p>Realizando una petición post a la dirección <a href="/apiv1/anuncios">http://localhost:3000/apiv1/anuncios</a> se pueden añadir nuevos anuncios a la base de datos.</p>
+    </div>
+  </div>
+</div>
+
+<% include footer.html %>
