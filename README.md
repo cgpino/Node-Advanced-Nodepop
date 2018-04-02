@@ -1,5 +1,5 @@
-# Node-Basics-Nodepop
-Práctica del curso de fundamentos de Node de Keepcoding
+# Node-Advanced-Nodepop
+Práctica del curso de Node avanzado de Keepcoding
 
 ## Requisitos
 * NodeJS

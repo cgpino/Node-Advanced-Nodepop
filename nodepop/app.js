@@ -30,11 +30,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const loginController = require('./routes/loginController');
+
 /**
  * Middlewares de la aplicación web
  */
 app.use('/',      require('./routes/index'));
 app.use('/users', require('./routes/users'));
+
+app.use('/login', loginController.index);
 
 /**
  * Middlewares de la API
