@@ -10,6 +10,7 @@ require('./lib/connectMongoose');
 
 // Se cargan los modelos para que mongoose los conozca
 require('./models/Anuncio');
+require('./models/Usuario');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -39,7 +40,8 @@ const loginController = require('./routes/loginController');
 app.use('/',      require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
-app.use('/login', loginController.index);
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 
 /**
  * Middlewares de la API
