@@ -6,7 +6,7 @@ class LoginController {
 
   // GET
   index(req, res, next) {
-    res.locals.email = '';
+    res.locals.email = process.env.NODE_ENV === 'development' ? 'admin@example.com' : '';
     res.locals.error = '';
     res.render('login');
   }
@@ -18,6 +18,8 @@ class LoginController {
     console.log(email, password);
 
     const user = await Usuario.findOne({ email: email, password: password });
+
+    console.log(user);
 
     // Se le devuelve el email si ha fallado
     res.locals.email = email;

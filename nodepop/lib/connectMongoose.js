@@ -15,3 +15,5 @@ conn.once('open', () => {
 });
 
 mongoose.connect('mongodb://localhost/nodepop');
+
+module.exports = conn;
