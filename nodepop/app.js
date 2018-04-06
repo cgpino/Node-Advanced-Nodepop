@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const session = require('express-session');
+const loginController = require('./routes/loginController');
+
 // Se conecta la base de datos
 require('./lib/connectMongoose');
 
@@ -32,7 +35,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const loginController = require('./routes/loginController');
+/**
+ * Middlewares de la API
+ */
+app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+
+// Middlewares de control de sesiones
+app.use(session({
+  name: 'nodepop-session',
+  secret: 'ashduahfuajdusabfsbhgbhjasfabdgasdubfdbfuansd',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // Dos días de inactividad
+}));
 
 /**
  * Middlewares de la aplicación web
@@ -42,11 +57,6 @@ app.use('/users', require('./routes/users'));
 
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
-
-/**
- * Middlewares de la API
- */
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

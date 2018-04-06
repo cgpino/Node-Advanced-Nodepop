@@ -1,6 +1,7 @@
 'use strict';
 
 const Usuario = require('../models/Usuario');
+const bcrypt = require('bcrypt');
 
 class LoginController {
 
@@ -15,19 +16,28 @@ class LoginController {
   async post(req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email, password);
 
-    const user = await Usuario.findOne({ email: email, password: password });
-
-    console.log(user);
-
-    // Se le devuelve el email si ha fallado
+    // Variable para devolver un email
     res.locals.email = email;
 
     // Variable para devolver un error
     res.locals.error = '';
 
-    res.render('login');
+    //const passwordHash = await Usuario.hashPassword(password);
+    const user = await Usuario.findOne({ email: email });
+
+    // Comprobar usuario encontrado y verificar la clave del usuario
+    if (!user || !await bcrypt.compare(password, user.password)) {
+      res.locals.error = 'Credenciales incorrectas';
+      res.render('login');
+      return;
+    }
+
+    // abcd1234 - admin
+    req.session.authUser = { _id: user._id };
+
+    // Usuario encontrado y validado
+    res.redirect('/');
   }
 
 }

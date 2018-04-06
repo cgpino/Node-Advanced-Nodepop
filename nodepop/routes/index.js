@@ -3,6 +3,8 @@
 var express = require('express');
 var router = express.Router();
 
+const sessionAuth = require('../lib/sessionAuth');
+
 // Se carga el modelo
 const Anuncio = require('../models/Anuncio');
 
@@ -11,13 +13,25 @@ const { query, validationResult } = require('express-validator/check');
 
 // Página de inicio con las opciones e instrucciones
 router.get('/', function(req, res, next) {
+
+    console.log(req.session.authUser);
+
     // Se renderiza
     res.render('index', { title: 'Nodepop' });
 });
 
 // Listado de anuncios HTML
-router.get('/anuncios', async (req, res, next) => {
-  
+// Con sessionAuth se especifica si es necesario iniciar sesión para entrar
+router.get('/anuncios', sessionAuth(), async (req, res, next) => {
+
+  //console.log(req.session.authUser);
+
+  // Redigir al login si no está autenticado
+  /*if (!req.session.authUser) {
+    res.redirect('/login');
+    return;
+  }*/
+
   // Con async/await
   try {
 
@@ -73,7 +87,7 @@ router.get('/anuncios', async (req, res, next) => {
   } catch(err) {
     next(err);
     return;
-  }  
+  }
 });
 
 // Función para filtrar por precio
