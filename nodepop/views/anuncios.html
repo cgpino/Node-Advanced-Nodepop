@@ -4,12 +4,10 @@
 
 <div class="container">
   <br>
-  <h3 class="page-title">Listado de anuncios</h3>
+  <h3 class="page-title"><%= __('Ad list') %></h3>
   <center>
     <% anuncios.forEach(anuncio => {  %>
       <div class="card mt-4">
-        <!--<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">-->
-
         <div class="card-body">
           <div class="row">
             <div class="col-lg-3">
@@ -19,9 +17,9 @@
               <h4><%= anuncio.precio %> €</h4>
 
               <% if (anuncio.venta) { %>
-                <h4><span class="badge badge-success">Se vende</span></h4>
+                <h4><span class="badge badge-success"><%= __('For sale') %></span></h4>
               <% } else { %>
-                <h4><span class="badge badge-primary">Se busca</span></h4>
+                <h4><span class="badge badge-primary"><%= __('Wanted') %></span></h4>
               <% } %>
 
               <p>

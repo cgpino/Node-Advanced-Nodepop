@@ -14,8 +14,6 @@ const { query, validationResult } = require('express-validator/check');
 // Página de inicio con las opciones e instrucciones
 router.get('/', function(req, res, next) {
 
-    console.log(req.session.authUser);
-
     // Se renderiza
     res.render('index', { title: 'Nodepop' });
 });

@@ -5,11 +5,11 @@
 <div class="container">
 
   <br>
-  <h3 class="page-title">Inicio</h3>
+  <h3 class="page-title"><%= __('Index') %></h3>
 
   <div class="card card-outline-secondary my-4">
     <div class="card-header">
-      Inicio de sesión
+      <%= __('Login') %>
     </div>
     <div class="card-body">
       <p>Se puede iniciar sesión de manera normal (haciendo uso de cookies para guardar la sesión) accediendo al siguiente enlace y escribiendo las credenciales correctamente: <a href="/login">http://localhost:3000/login</a></p>
@@ -23,7 +23,7 @@
 
   <div class="card card-outline-secondary my-4">
     <div class="card-header">
-      Tipos de listados
+      <%= __('Types of listings') %>
     </div>
     <div class="card-body">
       <ul>
@@ -36,7 +36,7 @@
 
   <div class="card card-outline-secondary my-4">
     <div class="card-header">
-      Filtros
+      <%= __('Filters') %>
     </div>
     <div class="card-body">
       <p>Desde ambos listados es posible aplicar filtros usando estos parámetros como query:</p>
@@ -60,7 +60,7 @@
 
   <div class="card card-outline-secondary my-4">
     <div class="card-header">
-      Añadir anuncios
+      <%= __('Add ads') %>
     </div>
     <div class="card-body">
       <p>Realizando una petición post a la dirección <a href="/apiv1/anuncios">http://localhost:3000/apiv1/anuncios</a> se pueden añadir nuevos anuncios a la base de datos.</p>

@@ -5,18 +5,18 @@
 <br>
 <div class="container">
 
-  <h3 class="page-title">Inicio de sesión</h3>
+  <h3 class="page-title"><%= __('Login') %></h3>
 
   <form method="POST">
     <div class="form-group">
-      <label for="emailInput">Correo electrónico:</label>
-      <input type="email" class="form-control" id="emailInput" placeholder="Introduce correo" name="email" value="<%= email %>">
+      <label for="emailInput"><%= __('Email') %>:</label>
+      <input type="email" class="form-control" id="emailInput" placeholder="<%= __('Enter email') %>" name="email" value="<%= email %>">
     </div>
     <div class="form-group">
-      <label for="passwordInput">Contraseña:</label>
-      <input type="password" class="form-control" id="passwordInput" placeholder="Introduce contraseña" name="password">
+      <label for="passwordInput"><%= __('Password') %>:</label>
+      <input type="password" class="form-control" id="passwordInput" placeholder="<%= __('Enter password') %>" name="password">
     </div>
-    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    <button type="submit" class="btn btn-primary"><%= __('Login') %></button>
     <div class="error"><%=error %></div>
   </form>
 </div>
