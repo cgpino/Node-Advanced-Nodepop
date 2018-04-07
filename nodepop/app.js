@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const jwtAuth = require('./lib/jwtAuth');
+
 const loginController = require('./routes/loginController');
 
 // Se conecta la base de datos
-require('./lib/connectMongoose');
+const conn = require('./lib/connectMongoose');
 
 // Se cargan los modelos para que mongoose los conozca
 require('./models/Anuncio');
@@ -35,19 +39,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/**
- * Middlewares de la API
- */
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
-
 // Middlewares de control de sesiones
 app.use(session({
   name: 'nodepop-session',
   secret: 'ashduahfuajdusabfsbhgbhjasfabdgasdubfdbfuansd',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // Dos días de inactividad
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true }, // Dos días de inactividad
+  store: new MongoStore({
+    // Cómo conectarse a mi base de datos
+    url: 'mongodb://localhost/cursonode' // fix issue https://github.com/jdesboeufs/connect-mongo/issues/277
+    //mongooseConnection: conn
+  })
 }));
+
+/**
+ * Middlewares de la API
+ */
+app.use('/apiv1/anuncios', jwtAuth(), require('./routes/apiv1/anuncios'));
+app.use('/apiv1/authenticate', loginController.postLoginJWT);
 
 /**
  * Middlewares de la aplicación web
@@ -57,6 +67,7 @@ app.use('/users', require('./routes/users'));
 
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -81,6 +92,10 @@ app.use(function(err, req, res, next) {
     res.json({ success: false, error: err.message });
     return;
   }
+
+  /*if (!req.session.authUser) {
+    res.json({ success: false, error: err.message })
+  }*/
 
   // set locals, only providing error in development
   res.locals.message = err.message;

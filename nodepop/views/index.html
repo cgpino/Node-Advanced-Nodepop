@@ -6,15 +6,30 @@
 
   <br>
   <h3 class="page-title">Inicio</h3>
+
+  <div class="card card-outline-secondary my-4">
+    <div class="card-header">
+      Inicio de sesión
+    </div>
+    <div class="card-body">
+      <p>Se puede iniciar sesión de manera normal (haciendo uso de cookies para guardar la sesión) accediendo al siguiente enlace y escribiendo las credenciales correctamente: <a href="/login">http://localhost:3000/login</a></p>
+      <p>Para cerrar esta sesión bastará con acceder al siguiente enlace: <a href="/logout">http://localhost:3000/logout</a></p>
+      <hr>
+      <p>También es posible iniciar sesión con token (que nos servirá para poder acceder a los archivos del API), para ello debemos hacer una petición POST a <a href="/apiv1/authenticate">http://localhost:3000/apiv1/authenticate</a> y aportar nuestras credenciales (email y contraseña).</p>
+      <p>Si las credenciales son correctas, el servidor debe devolvernos un token, el cual debemos añadir en la cabecera de la URL para poder acceder.<p>
+      <p>Ejemplo: <a href="/apiv1/anuncios?token=miTokenObtenido">http://localhost:3000/apiv1/anuncios?token=miTokenObtenido</a></p>
+    </div>
+  </div>
+
   <div class="card card-outline-secondary my-4">
     <div class="card-header">
       Tipos de listados
     </div>
     <div class="card-body">
       <ul>
-        <li><p><a href="/anuncios">Listado de anuncios en HTML</a> (es necesario iniciar sesión)</p></li>
-        <li><p><a href="/apiv1/anuncios">Listado de anuncios en JSON</a></p></li>
-        <li><p><a href="/apiv1/anuncios/tags">Listado de tags en JSON</a></p></li>
+        <li><p><a href="/anuncios">Listado de anuncios en HTML</a> (es necesario iniciar sesión con cookies)</p></li>
+        <li><p><a href="/apiv1/anuncios">Listado de anuncios en JSON </a> (es necesario iniciar sesión con token)</p></li>
+        <li><p><a href="/apiv1/anuncios/tags">Listado de tags en JSON</a> (es necesario iniciar sesión con token)</p></li>
       </ul>
     </div>
   </div>

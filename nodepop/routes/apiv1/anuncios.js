@@ -8,10 +8,19 @@ const Anuncio = require('../../models/Anuncio');
 
 // Listado de anuncios JSON
 router.get('/', async (req, res, next) => {
-  
+
+    // Devolver json con error si no está autenticado el usuario
+    /*if (!req.session.authUser) {
+      var err = new Error('Authorization Required');
+      err.status = 401;
+
+      res.json({ success: false, result: err.message });
+      return;
+    }*/
+
     // Con async/await
     try {
-  
+
       // Se recogen los parámetros de entrada
       const nombre = req.query.nombre;
       const venta = req.query.venta;
@@ -21,10 +30,10 @@ router.get('/', async (req, res, next) => {
       const limit = parseInt(req.query.limit);
       const sort = req.query.sort;
       const fields = req.query.fields;
-  
+
       // Filtro vacío inicial
       const filtro = {};
-  
+
       // Filtrar por nombre
       if (typeof nombre !== 'undefined') {
         // Se añade el nombre (por el que empiece) al filtro
@@ -51,17 +60,17 @@ router.get('/', async (req, res, next) => {
         // Se comprueba si el tag está dentro de los tags de la base de datos
         filtro.tags = {$in: filtro.tags};
     }
-  
+
       // La función debe ser asíncrona si se usa await
       const docs = await Anuncio.listar(filtro, skip, limit, sort, fields);
-      
+
       // Se devuelven los datos con un json
-      res.json({ success: true, result: docs });  
+      res.json({ success: true, result: docs });
 
     } catch(err) {
       next(err);
       return;
-    }  
+    }
   });
 
 // Listado de tags
@@ -90,7 +99,7 @@ router.get('/tags', function (req, res, next) {
     });
 
     // Se devuelven los datos con un json
-    res.json({ success: true, result: tags });  
+    res.json({ success: true, result: tags });
 
   });
 
@@ -101,10 +110,10 @@ router.post('/', (req, res, next) => {
 
   // Se obtienen los datos facilitados
   const data = req.body;
-  
+
   // Se crea documento del anuncio en memoria
   const anuncio = new Anuncio(data);
-  
+
   // Se guarda en la base de datos
   anuncio.save((err, anuncioSaved) => {
     if (err) {
