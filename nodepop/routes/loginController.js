@@ -8,6 +8,13 @@ class LoginController {
 
   // GET
   index(req, res, next) {
+
+    // ¿Está autenticado el usuario o no?
+    if (req.session.authUser)
+      res.locals.authenticated = true;
+    else
+      res.locals.authenticated = false;
+
     res.locals.email = process.env.NODE_ENV === 'development' ? 'admin@example.com' : '';
     res.locals.error = '';
     res.render('login');
@@ -78,9 +85,6 @@ class LoginController {
       res.redirect('/');
     })
   }
-
-
-
 }
 
 module.exports = new LoginController();

@@ -12,5 +12,13 @@
 	"Email": "Correo electrónico",
 	"Password": "Contraseña",
 	"Enter email": "Introduce correo",
-	"Enter password": "Introduce contraseña"
+	"Enter password": "Introduce contraseña",
+	"Add ad": "Añadir anuncio",
+	"Name": "Nombre",
+	"State": "Estado",
+	"Price": "Precio",
+	"Photo": "Foto",
+	"Tags": "Etiquetas",
+	"Add": "Añadir",
+	"To write several tags, separate them by commas": "Para escribir varias etiquetas, sepáralas por comas"
 }

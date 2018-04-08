@@ -15,7 +15,7 @@
       <p>Se puede iniciar sesión de manera normal (haciendo uso de cookies para guardar la sesión) accediendo al siguiente enlace y escribiendo las credenciales correctamente: <a href="/login">http://localhost:3000/login</a></p>
       <p>Para cerrar esta sesión bastará con acceder al siguiente enlace: <a href="/logout">http://localhost:3000/logout</a></p>
       <hr>
-      <p>También es posible iniciar sesión con token (que nos servirá para poder acceder a los archivos del API), para ello debemos hacer una petición POST a <a href="/apiv1/authenticate">http://localhost:3000/apiv1/authenticate</a> y aportar nuestras credenciales (email y contraseña).</p>
+      <p>También es posible iniciar sesión con token (que nos servirá para poder acceder a los archivos del API), para ello debemos hacer una petición POST a <a href="/apiv1/authenticate">http://localhost:3000/apiv1/authenticate</a> (se puede hacer facilmente usando Postman) y aportar nuestras credenciales (email y contraseña).</p>
       <p>Si las credenciales son correctas, el servidor debe devolvernos un token, el cual debemos añadir en la cabecera de la URL para poder acceder.<p>
       <p>Ejemplo: <a href="/apiv1/anuncios?token=miTokenObtenido">http://localhost:3000/apiv1/anuncios?token=miTokenObtenido</a></p>
     </div>
@@ -50,10 +50,10 @@
       <p>También pueden usarse los parámetros <b>skip</b>, <b>limit</b> y <b>sort</b> para paginar y ordenar el listado.</p>
       <p>Ejemplos:</p>
       <ul>
-        <li><p><a href="/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work">http://localhost:3000/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work</a></p></li>
-        <li><p><a href="/anuncios?venta=true&precio=100-">http://localhost:3000/anuncios?venta=true&precio=100-</a></p></li>
-        <li><p><a href="/apiv1/anuncios?skip=1&limit=1">http://localhost:3000/apiv1/anuncios?skip=1&limit=1</a></p></li>
-        <li><p><a href="/anuncios?sort=precio">http://localhost:3000/anuncios?sort=precio</a></p></li>
+        <li><p><a href="/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work">http://localhost:3000/apiv1/anuncios?nombre=Nintendo&precio=300-350&tags=work</a> (es necesario iniciar sesión con token)</p></li>
+        <li><p><a href="/anuncios?venta=true&precio=100-">http://localhost:3000/anuncios?venta=true&precio=100-</a> (es necesario iniciar sesión con cookies)</p></li>
+        <li><p><a href="/apiv1/anuncios?skip=1&limit=1">http://localhost:3000/apiv1/anuncios?skip=1&limit=1</a> (es necesario iniciar sesión con token)</p></li>
+        <li><p><a href="/anuncios?sort=precio">http://localhost:3000/anuncios?sort=precio</a> (es necesario iniciar sesión con cookies)</p></li>
       </ul>
     </div>
   </div>
@@ -63,7 +63,12 @@
       <%= __('Add ads') %>
     </div>
     <div class="card-body">
-      <p>Realizando una petición post a la dirección <a href="/apiv1/anuncios">http://localhost:3000/apiv1/anuncios</a> se pueden añadir nuevos anuncios a la base de datos.</p>
+      <p>Realizando una petición post a la dirección <a href="/apiv1/anuncios">http://localhost:3000/apiv1/anuncios</a> se pueden añadir nuevos anuncios a la base de datos (se puede hacer facilmente usando Postman).</p>
+      <p>Para poder hacerlo, será necesario añadir el token secreto a la cabecera de la URL (tal y como viene detallado en la documentación para el login).</p>
+      <hr>
+      <p>También es posible añadir un nuevo anuncio accediendo a <a href="/addAd">http://localhost:3000/addAd</a> (es necesario iniciar sesión con cookies).</p>
+      <p>Una vez se haya accedido, bastará con rellenar el formulario y darle a "Añadir".</p>
+      <p>Cuando se añada un nuevo anuncio y se suba una imagen, automaticamente se creará un thumbnail de ésta.</p>
     </div>
   </div>
 </div>

@@ -14,6 +14,12 @@ const { query, validationResult } = require('express-validator/check');
 // Página de inicio con las opciones e instrucciones
 router.get('/', function(req, res, next) {
 
+    // ¿Está autenticado el usuario o no?
+    if (req.session.authUser)
+      res.locals.authenticated = true;
+    else
+      res.locals.authenticated = false;
+
     // Se renderiza
     res.render('index', { title: 'Nodepop' });
 });
@@ -22,13 +28,11 @@ router.get('/', function(req, res, next) {
 // Con sessionAuth se especifica si es necesario iniciar sesión para entrar
 router.get('/anuncios', sessionAuth(), async (req, res, next) => {
 
-  //console.log(req.session.authUser);
-
-  // Redigir al login si no está autenticado
-  /*if (!req.session.authUser) {
-    res.redirect('/login');
-    return;
-  }*/
+  // ¿Está autenticado el usuario o no?
+  if (req.session.authUser)
+    res.locals.authenticated = true;
+  else
+    res.locals.authenticated = false;
 
   // Con async/await
   try {
@@ -78,6 +82,8 @@ router.get('/anuncios', sessionAuth(), async (req, res, next) => {
 
     // Se le pasan los resultados a la vista
     res.locals.anuncios = docs;
+
+    //
 
     // Se renderiza
     res.render('anuncios', { title: 'Nodepop' });

@@ -12,5 +12,13 @@
 	"Email": "Email",
 	"Password": "Password",
 	"Enter email": "Enter email",
-	"Enter password": "Enter password"
+	"Enter password": "Enter password",
+	"Add ad": "Add ad",
+	"Name": "Name",
+	"State": "State",
+	"Price": "Price",
+	"Photo": "Photo",
+	"Tags": "Tags",
+	"Add": "Add",
+	"To write several tags, separate them by commas": "To write several tags, separate them by commas"
 }

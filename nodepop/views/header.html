@@ -30,15 +30,21 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/anuncios"><%= __('Ads') %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login"><%= __('Login') %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout"><%= __('Logout') %></a>
-            </li>
+            <% if (authenticated) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/anuncios"><%= __('Ad list') %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/addAd"><%= __('Add ads') %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout"><%= __('Logout') %></a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/login"><%= __('Login') %></a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </div>

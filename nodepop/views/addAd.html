@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<% include header.html %>
+
+<br>
+<div class="container">
+
+  <h3 class="page-title"><%= __('Add ad') %></h3>
+
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="nombre"><%= __('Name') %>:</label>
+      <input type="text" class="form-control" name="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="venta"><%= __('State') %>:</label>
+        <input type="radio" name="venta" value="true" checked>Se vende
+        <input type="radio" name="venta" value="false">Se busca
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="precio"><%= __('Price') %>:</label>
+      <input type="number" class="form-control"  name="precio" required>
+    </div>
+
+    <div class="form-group">
+      <label for="foto"><%= __('Photo') %>:</label>
+      <input name="photo_file" type="file" required>
+      <input name="foto" type="hidden">
+    </div>
+
+    <div class="form-group">
+      <label for="tags"><%= __('Tags') %>:</label>
+      <input type="text" class="form-control" name="tags" placeholder="<%= __('To write several tags, separate them by commas') %>" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary"><%= __('Add') %></button>
+  </form>
+</div>
+<br>
+
+<% include footer.html %>

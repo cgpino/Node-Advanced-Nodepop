@@ -9,15 +9,6 @@ const Anuncio = require('../../models/Anuncio');
 // Listado de anuncios JSON
 router.get('/', async (req, res, next) => {
 
-    // Devolver json con error si no está autenticado el usuario
-    /*if (!req.session.authUser) {
-      var err = new Error('Authorization Required');
-      err.status = 401;
-
-      res.json({ success: false, result: err.message });
-      return;
-    }*/
-
     // Con async/await
     try {
 

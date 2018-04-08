@@ -67,6 +67,7 @@ app.use('/apiv1/authenticate', loginController.postLoginJWT);
  * Middlewares de la aplicación web
  */
 app.use('/',      require('./routes/index'));
+app.use('/addAd', require('./routes/addAd'));
 app.use('/lang',  require('./routes/lang'));
 app.use('/users', require('./routes/users'));
 
